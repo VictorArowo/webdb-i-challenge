@@ -1,27 +1,29 @@
 import db from '../../data/dbConfig';
 
 export const getAll = () => {
-  return db('budgets');
+  return db('accounts');
 };
 
 export const getOne = id => {
-  return db('budgets').where('id', '=', id);
+  return db('accounts').where('id', '=', id);
 };
 
 export const postOne = async body => {
-  let [id] = await db('budgets').insert(body);
+  let [id] = await db('accounts').insert(body);
   return getOne(id);
 };
 
 export const editOne = async (id, body) => {
-  let result = await db('budgets')
+  const result = await db('accounts')
     .where('id', '=', id)
     .update(body);
   return result > 0 ? { id, ...body } : null;
 };
 
 export const deleteOne = async id => {
-  return db('budgets')
+  const result = db('accounts')
     .where('id', '=', id)
     .delete();
+
+  return result ? id : null;
 };
