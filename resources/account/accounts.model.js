@@ -1,7 +1,9 @@
 import db from '../../data/dbConfig';
 
-export const getAll = () => {
-  return db('accounts');
+export const getAll = (limit, sortBy, sortDir) => {
+  return db('accounts')
+    .orderBy(sortBy || 'id', sortDir || 'asc')
+    .limit(limit || 10);
 };
 
 export const getOne = id => {

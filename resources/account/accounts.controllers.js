@@ -5,8 +5,9 @@ export const getAccountById = async (req, res) => {
 };
 
 export const getAllAccounts = async (req, res) => {
+  const { limit, sortBy, sortDir } = req.query;
   try {
-    let accounts = await getAll();
+    let accounts = await getAll(limit, sortBy, sortDir);
     return res.status(200).json(accounts);
   } catch (error) {
     return res
