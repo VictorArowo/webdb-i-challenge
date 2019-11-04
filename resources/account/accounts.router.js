@@ -11,10 +11,15 @@ import { verifyId, verifyBody } from './accounts.middleware';
 
 const router = Router();
 
-router.get('/', getAllAccounts);
-router.get('/:id', verifyId, getAccountById);
-router.post('/', verifyBody, createAccount);
-router.put('/:id', verifyId, verifyBody, editAccount);
-router.delete('/:id', verifyId, deleteAccount);
+router
+  .route('/')
+  .get(getAllAccounts)
+  .post(verifyBody, createAccount);
+
+router
+  .route('/:id')
+  .get(verifyId, getAccountById)
+  .put(verifyId, verifyBody, editAccount)
+  .delete(verifyId, deleteAccount);
 
 export default router;
