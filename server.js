@@ -1,9 +1,9 @@
-const express = require('express');
-
-const db = require('./data/dbConfig.js');
+import express from 'express';
+import accountRouter from './resources/account/accounts.router';
 
 const server = express();
 
 server.use(express.json());
+server.use('/api/accounts', accountRouter);
 
-module.exports = server;
+export default server;
